@@ -1,0 +1,100 @@
+# Node / JS
+node_modules/
+dist/
+build/
+public/build/
+
+# Env / secrets
+.env
+.env.*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Compiled / binaries
+*.exe
+*.dll
+*.class
+
+# Database
+*.sqlite
+*.sqlite3
+
+# Large media / user uploads (keep out of git—use LFS or external storage)
+videos/
+assets/videos/
+reports/*.pdf
+
+# Lockfiles (optional to track or ignore depending on your package manager)
+pnpm-lock.yaml
+package-lock.json
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Editor/IDE
+.vscode/
+*.code-workspace
+
+# Node / JS
+node_modules/
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+out/
+
+# Env files / secrets
+.env
+.env.*
+
+# Logs and temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Compiled binaries
+*.exe
+*.dll
+*.so
+
+# IDE config
+.idea/
+
+# Ignore large media and generated reports by default (uncomment if you want to keep them)
+/videos/
+assets/videos/
+reports/
+resume/
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.zip
+*.tar.gz
+
+# Git LFS pointer files (if using LFS, keep .gitattributes tracked)
+.gitattributes
+
+# If you need to keep some images in the repo, remove the relevant lines above or
+# add exceptions like: !assets/images/keep-this.png

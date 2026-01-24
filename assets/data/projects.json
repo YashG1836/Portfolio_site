@@ -1,0 +1,136 @@
+{
+  "projects": [
+    {
+      "title": "Amazon E-commerce UI",
+      "category": "Web",
+      "techStack": ["HTML", "CSS"],
+      "description": "Pixel-focused Amazon-inspired landing page with responsive product grid and offer banners.",
+      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Amazon_site",
+      "liveDemo": "./assets/sites/Amazon_Project/amz_html.html",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Currency Converter",
+      "category": "Web",
+      "techStack": ["HTML", "CSS", "JavaScript"],
+      "description": "Lightweight currency converter with clean UI and simple rate calculation logic.",
+      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Currency_convertor",
+      "liveDemo": "./assets/sites/Currency_convertor/convertor.html",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Rock Paper Scissors",
+      "category": "Web",
+      "techStack": ["HTML", "CSS", "JavaScript"],
+      "description": "Interactive game with instant result feedback and replay flow.",
+      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Rock_paper_scissors",
+      "liveDemo": "./assets/sites/Rock_paper_game/game_html.html",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Tic Tac Toe",
+      "category": "Web",
+      "techStack": ["HTML", "CSS", "JavaScript"],
+      "description": "Classic tic-tac-toe with simple board state handling for quick play.",
+      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Tic_Tac_Toe",
+      "liveDemo": "./assets/sites/Tic_tac_game/tic.html",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Email & SMS Spam Detector",
+      "category": "ML",
+      "techStack": ["Python", "scikit-learn", "Streamlit"],
+      "description": "Supervised model for spam detection with notebook exploration and app prototype.",
+      "github": "https://github.com/YashG1836/streamlit-projects/tree/main/spam-email-detector",
+      "liveDemo": "https://yash-spam-email-detector.streamlit.app/",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Movie Recommendation Engine",
+      "category": "ML",
+      "techStack": ["Python", "Pandas", "NLTK"],
+      "description": "Content-based movie recommender trained on TMDB credits and metadata.",
+      "github": "https://github.com/YashG1836/streamlit-projects/tree/main/movie-recommendation",
+      "liveDemo": "https://yash-movie-recommendation-ml.streamlit.app/",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Project RAG AI",
+      "category": "ML",
+      "techStack": ["Python", "RAG", "Streamlit"],
+      "description": "Retrieval-augmented generation workflow with audio slicing, embeddings, and a Streamlit QA front-end.",
+      "github": "https://github.com/YashG1836/streamlit-projects/tree/main/rag-implementation-chatbot",
+      "liveDemo": "https://yash-llmbased-rag-chatbot.streamlit.app/",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "House Pricing — California Predictor",
+      "category": "ML",
+      "techStack": ["Python", "scikit-learn", "Streamlit"],
+      "description": "Random forest regression on the California housing dataset with Streamlit UI for single and batch predictions.",
+      "github": "https://github.com/YashG1836/streamlit-projects/tree/main/property-price-predictor",
+      "liveDemo": "https://yash-property-price-predictor.streamlit.app/",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Predict Stock Prices",
+      "category": "ML",
+      "techStack": ["Python", "Keras", "Streamlit", "yfinance"],
+      "description": "On-demand LSTM trainer on Yahoo Finance data with test metrics, multi-day forecasts, and a buy/hold hint.",
+      "github": "https://github.com/YashG1836/streamlit-projects/tree/main/stock-price-predictor",
+      "liveDemo": "https://yash-stock-price-predictor.streamlit.app/",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "StudentOS (shadcn/ui)",
+      "category": "Full Stack",
+      "techStack": ["TypeScript", "React", "Vite", "Tailwind"],
+      "description": "Dashboard experience with academic, career, and life modules using shadcn/ui components.",
+      "github": "",
+      "liveDemo": "https://student-os-seven.vercel.app/",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Smart Highway Lighting System",
+      "category": "College",
+      "techStack": ["Arduino", "Sensors", "Embedded"],
+      "description": "Electrical systems project for adaptive highway lighting using sensor-driven controls.",
+      "github": "",
+      "liveDemo": "",
+      "reportPdf": "assets/reports/Elec_Project.pdf",
+      "video": ""
+    },
+    {
+      "title": "Under Vehicle Surveillance System",
+      "category": "College",
+      "techStack": ["Computer Vision", "Image Processing"],
+      "description": "UVSS with automated underbody capture, report, and poster for surveillance use cases.",
+      "github": "",
+      "liveDemo": "",
+      "reportPdf": "assets/reports/UVSS_IEEE_report.pdf",
+      "posterPdf": "assets/reports/UVSS_poster_final.pdf",
+      "fullReportPdf": "assets/reports/UVSS_Full_Theory_Report.pdf",
+      "video": ""
+    },
+    {
+      "title": "World of Engineering — Smart Glove",
+      "category": "College",
+      "techStack": ["Hardware", "Sensors", "Computer Vision"],
+      "description": "Force-feedback motion tracking glove demoed as World of Engineering project.",
+      "github": "",
+      "liveDemo": "https://akshit-codes.github.io/virtugrip-crew/",
+      "reportPdf": "",
+      "video": "assets/videos/WOE_FINAL.mp4"
+    }
+  ]
+}

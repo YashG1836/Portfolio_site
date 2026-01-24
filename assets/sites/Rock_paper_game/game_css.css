@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+#heading{
+    height: 10vh;
+    background-color: #1B3C53;
+    color: #d2c1b6;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+#space{
+    height:5vh;
+}
+
+.choices{
+    margin: 1rem;
+    
+    display: flex;
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+
+}
+.choice:hover{
+    border-radius: 50%;
+    border: 10px solid black;
+
+}
+.choice{
+    border-radius: 50%;
+    height: 20vh;
+    width: 20vh;
+}
+#rock{
+    background-image: url(game_imgs/rock_img.png);
+    background-size: cover;
+    
+    margin: 4rem;
+
+}
+#paper{
+    background-image: url(game_imgs/paper_img.png);
+    background-size: cover;
+    
+}
+#scissor{
+    background-image: url(game_imgs/scissor_img.png);
+    background-size: cover;
+    
+    margin: 4rem;
+}
+
+.score-board{
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+#user{
+    height:20vh;
+    width: 10vw;
+    text-align: center;
+   
+
+}
+#comp{
+    height:20vh;
+    width: 10vw;
+    text-align: center;
+    
+}
+
+.center{
+    margin-top: 5vh ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.msg-container{
+    height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #74b4e6;
+    font-size: 2rem;
+    width: 40vw;
+    border-radius: 5%;
+    border: 2px solid black;
+}
