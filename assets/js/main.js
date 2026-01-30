@@ -2,6 +2,8 @@ const projectsGrid = document.getElementById("projects-grid");
 const filterButtons = document.querySelectorAll(".filter-btn");
 const themeToggle = document.getElementById("theme-toggle");
 const contactEmailLinks = document.querySelectorAll(".contact-chip[data-email]");
+const navToggle = document.getElementById("nav-toggle");
+const navLinks = document.querySelector(".nav-links");
 
 const state = {
   projects: [],
@@ -31,6 +33,32 @@ themeToggle.addEventListener("click", () => {
 });
 
 applyTheme(getPreferredTheme());
+
+const closeNav = () => {
+  if (!navLinks) return;
+  navLinks.classList.remove("open");
+  navToggle?.classList.remove("is-open");
+  navToggle?.setAttribute("aria-expanded", "false");
+};
+
+navToggle?.addEventListener("click", () => {
+  if (!navLinks) return;
+  const isOpen = navLinks.classList.toggle("open");
+  navToggle.classList.toggle("is-open", isOpen);
+  navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+});
+
+navLinks?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", closeNav);
+});
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (navLinks?.classList.contains("open")) closeNav();
+  },
+  { passive: true }
+);
 
 // Copy email to clipboard, then open compose link
 contactEmailLinks.forEach((link) => {

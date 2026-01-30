@@ -93,6 +93,45 @@ body.light .top-nav {
   gap: 10px;
 }
 
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--stroke);
+  border-radius: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-toggle:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.nav-toggle__bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(1) {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
 #theme-toggle {
   background: var(--card);
   color: var(--text);
@@ -484,13 +523,37 @@ main {
     flex-wrap: nowrap;
     gap: 12px;
     padding: 12px 16px;
+    position: sticky;
+  }
+  .nav-toggle {
+    display: inline-flex;
+  }
+  .nav-actions {
+    margin-left: auto;
   }
   .nav-links {
     display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: rgba(11, 13, 16, 0.95);
+    border-bottom: 1px solid var(--stroke);
+    box-shadow: var(--shadow);
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 16px 16px;
+  }
+  body.light .nav-links {
+    background: rgba(248, 250, 252, 0.95);
+  }
+  .nav-links.open {
+    display: flex;
+  }
+  .nav-links a {
+    padding: 12px 10px;
+    border-radius: 10px;
     width: 100%;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 10px;
   }
   .filters {
     justify-content: flex-start;
