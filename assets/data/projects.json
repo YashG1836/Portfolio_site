@@ -91,6 +91,16 @@
       "video": ""
     },
     {
+      "title": "COVID-19 Data Science Assignment",
+      "category": "ML",
+      "techStack": ["Python", "Pandas", "DataViz"],
+      "description": "Exploratory analysis and visual storytelling on COVID-19 trends with actionable findings.",
+      "github": "https://github.com/YashG1836/Writing_Assignment_DataScience_Covid19",
+      "liveDemo": "https://yashg1836.github.io/Writing_Assignment_DataScience_Covid19",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
       "title": "StudentOS (shadcn/ui)",
       "category": "Full Stack",
       "techStack": ["TypeScript", "React", "Vite", "Tailwind"],
