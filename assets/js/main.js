@@ -144,7 +144,7 @@ filterButtons.forEach((btn) => {
   });
 });
 
-fetch("assets/data/projects.json")
+fetch("assets/data/projects.json?v=20260603-1")
   .then((res) => res.json())
   .then((data) => {
     state.projects = data.projects || [];
