@@ -111,6 +111,39 @@
       "video": ""
     },
     {
+      "title": "Federated Learning and Fairness (Course Project)",
+      "category": "College",
+      "techStack": ["Python", "Federated Learning", "Fairness", "Machine Learning"],
+      "description": "Course project focused on fairness-aware federated learning with comparative analysis and evaluation.",
+      "github": "https://github.com/YashG1836/Federated_Learning_Project_Course",
+      "liveDemo": "",
+      "reportPdf": "assets/reports/Final_Report_FL.pdf",
+      "posterPdf": "assets/reports/FL_poster.pdf",
+      "fullReportPdf": "assets/reports/Federated_Learning_Elaborated.pdf",
+      "video": ""
+    },
+    {
+      "title": "Semantic Search Engine (Data Science Course Project)",
+      "category": "College",
+      "techStack": ["Python", "NLP", "Semantic Search", "Streamlit"],
+      "description": "Data science course project implementing semantic retrieval and search over textual data.",
+      "github": "https://github.com/YashG1836/Semantic_Search_Engine-",
+      "liveDemo": "https://sementicsearchengine.streamlit.app/",
+      "reportPdf": "assets/reports/final_data_science_sementic_search.pdf",
+      "fullReportPdf": "assets/reports/Sementic_search_elaborated_DS.pdf",
+      "video": ""
+    },
+    {
+      "title": "Algo Trading Strategy Backtest (Financial Modelling Course Project)",
+      "category": "College",
+      "techStack": ["Python", "Financial Modelling", "Backtesting", "Streamlit"],
+      "description": "Financial modelling course project for strategy backtesting and performance analysis.",
+      "github": "https://github.com/YashG1836/Algo_Trading_Strategy_Backtest",
+      "liveDemo": "https://algotradingstrategybacktest.streamlit.app/",
+      "reportPdf": "assets/reports/fin_mod_project_report.pdf",
+      "video": ""
+    },
+    {
       "title": "Smart Highway Lighting System",
       "category": "College",
       "techStack": ["Arduino", "Sensors", "Embedded"],
