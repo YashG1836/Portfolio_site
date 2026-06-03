@@ -109,7 +109,7 @@
     {
       "title": "COVID-19 Data Science Assignment",
       "category": "ML",
-      "projectGroup": "learning",
+      "projectGroup": "course",
       "techStack": ["Python", "Pandas", "DataViz"],
       "description": "Exploratory analysis and visual storytelling on COVID-19 trends with actionable findings.",
       "github": "https://github.com/YashG1836/Writing_Assignment_DataScience_Covid19",
@@ -175,7 +175,7 @@
     {
       "title": "Smart Highway Lighting System",
       "category": "College",
-      "projectGroup": "learning",
+      "projectGroup": "course",
       "techStack": ["Arduino", "Sensors", "Embedded"],
       "description": "Electrical systems project for adaptive highway lighting using sensor-driven controls.",
       "github": "",
@@ -186,7 +186,7 @@
     {
       "title": "World of Engineering — Smart Glove",
       "category": "College",
-      "projectGroup": "learning",
+      "projectGroup": "course",
       "techStack": ["Hardware", "Sensors", "Computer Vision"],
       "description": "Force-feedback motion tracking glove demoed as World of Engineering project.",
       "github": "",

@@ -17,15 +17,9 @@ const groupOrder = {
 };
 
 const groupLabels = {
-  main: "Main Projects",
-  course: "Course Projects",
-  learning: "Learning Projects",
-};
-
-const groupCardLabels = {
-  main: "Main Project",
-  course: "Course Project",
-  learning: "Learning Project",
+  main: "Main",
+  course: "Course",
+  learning: "Learning",
 };
 
 const getPreferredTheme = () => {
@@ -105,7 +99,7 @@ const renderProjects = () => {
   projectsGrid.innerHTML = "";
   const filtered = state.projects.filter((project) => {
     if (state.filter === "all") return true;
-    return project.category === state.filter;
+    return (project.projectGroup || "learning") === state.filter;
   });
 
   const sorted = filtered
@@ -117,30 +111,9 @@ const renderProjects = () => {
       return left._sortIndex - right._sortIndex;
     });
 
-  let currentGroup = null;
-
   sorted.forEach((project) => {
-    const projectGroup = project.projectGroup || "learning";
-    if (projectGroup !== currentGroup) {
-      currentGroup = projectGroup;
-
-      const sectionHeader = document.createElement("div");
-      sectionHeader.className = "project-section";
-
-      const sectionTitle = document.createElement("p");
-      sectionTitle.className = "project-section__title";
-      sectionTitle.textContent = groupLabels[projectGroup] || groupLabels.learning;
-
-      sectionHeader.appendChild(sectionTitle);
-      projectsGrid.appendChild(sectionHeader);
-    }
-
     const card = document.createElement("article");
     card.className = "card";
-
-    const kicker = document.createElement("p");
-    kicker.className = "card__kicker";
-    kicker.textContent = `${groupCardLabels[projectGroup] || groupCardLabels.learning}${project.timeline ? ` · ${project.timeline}` : ""}`;
 
     const title = document.createElement("h3");
     title.className = "card__title";
@@ -164,7 +137,13 @@ const renderProjects = () => {
     if (project.video) links.appendChild(buildLinkPill("Video", project.video));
 
     card.appendChild(title);
-  card.appendChild(kicker);
+    const projectGroup = project.projectGroup || "learning";
+
+    const kicker = document.createElement("p");
+    kicker.className = "card__kicker";
+    kicker.textContent = `${groupLabels[projectGroup] || groupLabels.learning}${project.timeline ? ` · ${project.timeline}` : ""}`;
+    card.appendChild(kicker);
+
     card.appendChild(desc);
     card.appendChild(meta);
     if (links.childElementCount) card.appendChild(links);

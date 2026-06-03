@@ -378,22 +378,9 @@ main {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
   margin-top: 16px;
-}
-
-.project-section {
-  grid-column: 1 / -1;
-  margin-top: 10px;
-}
-
-.project-section__title {
-  margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
 }
 
 .card {
@@ -411,7 +398,7 @@ main {
   margin: 0;
   color: var(--muted);
   font-size: 12px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -430,7 +417,8 @@ main {
 .card__tags {
   margin: 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
+  letter-spacing: 0.02em;
   line-height: 1.6;
 }
 
