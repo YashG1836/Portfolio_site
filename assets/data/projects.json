@@ -1,8 +1,24 @@
 {
   "projects": [
     {
+      "title": "Under Vehicle Surveillance System",
+      "category": "College",
+      "projectGroup": "main",
+      "timeline": "Aug-Dec 2025",
+      "techStack": ["Computer Vision", "Image Processing"],
+      "description": "UVSS with automated underbody capture, report, and poster for surveillance use cases.",
+      "github": "",
+      "liveDemo": "",
+      "reportPdf": "assets/reports/UVSS_IEEE_report.pdf",
+      "posterPdf": "assets/reports/UVSS_poster_final.pdf",
+      "fullReportPdf": "assets/reports/UVSS_Full_Theory_Report.pdf",
+      "video": ""
+    },
+    {
       "title": "Federated Learning and Fairness (Course Project)",
       "category": "College",
+      "projectGroup": "main",
+      "timeline": "Jan-Apr 2026",
       "techStack": ["Python", "Federated Learning", "Fairness", "Machine Learning"],
       "description": "Course project focused on fairness-aware federated learning with comparative analysis and evaluation.",
       "github": "https://github.com/YashG1836/Federated_Learning_Project_Course",
@@ -15,6 +31,7 @@
     {
       "title": "Semantic Search Engine (Data Science Course Project)",
       "category": "College",
+      "projectGroup": "course",
       "techStack": ["Python", "NLP", "Semantic Search", "Streamlit"],
       "description": "Data science course project implementing semantic retrieval and search over textual data.",
       "github": "https://github.com/YashG1836/Semantic_Search_Engine-",
@@ -26,6 +43,7 @@
     {
       "title": "Algo Trading Strategy Backtest (Financial Modelling Course Project)",
       "category": "College",
+      "projectGroup": "course",
       "techStack": ["Python", "Financial Modelling", "Backtesting", "Streamlit"],
       "description": "Financial modelling course project for strategy backtesting and performance analysis.",
       "github": "https://github.com/YashG1836/Algo_Trading_Strategy_Backtest",
@@ -34,48 +52,9 @@
       "video": ""
     },
     {
-      "title": "Amazon E-commerce UI",
-      "category": "Web",
-      "techStack": ["HTML", "CSS"],
-      "description": "Pixel-focused Amazon-inspired landing page with responsive product grid and offer banners.",
-      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Amazon_site",
-      "liveDemo": "./assets/sites/Amazon_Project/amz_html.html",
-      "reportPdf": "",
-      "video": ""
-    },
-    {
-      "title": "Currency Converter",
-      "category": "Web",
-      "techStack": ["HTML", "CSS", "JavaScript"],
-      "description": "Lightweight currency converter with clean UI and simple rate calculation logic.",
-      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Currency_convertor",
-      "liveDemo": "./assets/sites/Currency_convertor/convertor.html",
-      "reportPdf": "",
-      "video": ""
-    },
-    {
-      "title": "Rock Paper Scissors",
-      "category": "Web",
-      "techStack": ["HTML", "CSS", "JavaScript"],
-      "description": "Interactive game with instant result feedback and replay flow.",
-      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Rock_paper_scissors",
-      "liveDemo": "./assets/sites/Rock_paper_game/game_html.html",
-      "reportPdf": "",
-      "video": ""
-    },
-    {
-      "title": "Tic Tac Toe",
-      "category": "Web",
-      "techStack": ["HTML", "CSS", "JavaScript"],
-      "description": "Classic tic-tac-toe with simple board state handling for quick play.",
-      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Tic_Tac_Toe",
-      "liveDemo": "./assets/sites/Tic_tac_game/tic.html",
-      "reportPdf": "",
-      "video": ""
-    },
-    {
       "title": "Email & SMS Spam Detector",
       "category": "ML",
+      "projectGroup": "learning",
       "techStack": ["Python", "scikit-learn", "Streamlit"],
       "description": "Supervised model for spam detection with notebook exploration and app prototype.",
       "github": "https://github.com/YashG1836/streamlit-projects/tree/main/spam-email-detector",
@@ -86,6 +65,7 @@
     {
       "title": "Movie Recommendation Engine",
       "category": "ML",
+      "projectGroup": "learning",
       "techStack": ["Python", "Pandas", "NLTK"],
       "description": "Content-based movie recommender trained on TMDB credits and metadata.",
       "github": "https://github.com/YashG1836/streamlit-projects/tree/main/movie-recommendation",
@@ -96,6 +76,7 @@
     {
       "title": "Project RAG AI",
       "category": "ML",
+      "projectGroup": "learning",
       "techStack": ["Python", "RAG", "Streamlit"],
       "description": "Retrieval-augmented generation workflow with audio slicing, embeddings, and a Streamlit QA front-end.",
       "github": "https://github.com/YashG1836/streamlit-projects/tree/main/rag-implementation-chatbot",
@@ -106,6 +87,7 @@
     {
       "title": "House Pricing — California Predictor",
       "category": "ML",
+      "projectGroup": "learning",
       "techStack": ["Python", "scikit-learn", "Streamlit"],
       "description": "Random forest regression on the California housing dataset with Streamlit UI for single and batch predictions.",
       "github": "https://github.com/YashG1836/streamlit-projects/tree/main/property-price-predictor",
@@ -116,6 +98,7 @@
     {
       "title": "Predict Stock Prices",
       "category": "ML",
+      "projectGroup": "learning",
       "techStack": ["Python", "Keras", "Streamlit", "yfinance"],
       "description": "On-demand LSTM trainer on Yahoo Finance data with test metrics, multi-day forecasts, and a buy/hold hint.",
       "github": "https://github.com/YashG1836/streamlit-projects/tree/main/stock-price-predictor",
@@ -126,6 +109,7 @@
     {
       "title": "COVID-19 Data Science Assignment",
       "category": "ML",
+      "projectGroup": "learning",
       "techStack": ["Python", "Pandas", "DataViz"],
       "description": "Exploratory analysis and visual storytelling on COVID-19 trends with actionable findings.",
       "github": "https://github.com/YashG1836/Writing_Assignment_DataScience_Covid19",
@@ -136,6 +120,7 @@
     {
       "title": "StudentOS (shadcn/ui)",
       "category": "Full Stack",
+      "projectGroup": "learning",
       "techStack": ["TypeScript", "React", "Vite", "Tailwind"],
       "description": "Dashboard experience with academic, career, and life modules using shadcn/ui components.",
       "github": "",
@@ -144,8 +129,53 @@
       "video": ""
     },
     {
+      "title": "Amazon E-commerce UI",
+      "category": "Web",
+      "projectGroup": "learning",
+      "techStack": ["HTML", "CSS"],
+      "description": "Pixel-focused Amazon-inspired landing page with responsive product grid and offer banners.",
+      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Amazon_site",
+      "liveDemo": "./assets/sites/Amazon_Project/amz_html.html",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Currency Converter",
+      "category": "Web",
+      "projectGroup": "learning",
+      "techStack": ["HTML", "CSS", "JavaScript"],
+      "description": "Lightweight currency converter with clean UI and simple rate calculation logic.",
+      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Currency_convertor",
+      "liveDemo": "./assets/sites/Currency_convertor/convertor.html",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Rock Paper Scissors",
+      "category": "Web",
+      "projectGroup": "learning",
+      "techStack": ["HTML", "CSS", "JavaScript"],
+      "description": "Interactive game with instant result feedback and replay flow.",
+      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Rock_paper_scissors",
+      "liveDemo": "./assets/sites/Rock_paper_game/game_html.html",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
+      "title": "Tic Tac Toe",
+      "category": "Web",
+      "projectGroup": "learning",
+      "techStack": ["HTML", "CSS", "JavaScript"],
+      "description": "Classic tic-tac-toe with simple board state handling for quick play.",
+      "github": "https://github.com/YashG1836/Html_css_js_Projects/tree/main/projects/Tic_Tac_Toe",
+      "liveDemo": "./assets/sites/Tic_tac_game/tic.html",
+      "reportPdf": "",
+      "video": ""
+    },
+    {
       "title": "Smart Highway Lighting System",
       "category": "College",
+      "projectGroup": "learning",
       "techStack": ["Arduino", "Sensors", "Embedded"],
       "description": "Electrical systems project for adaptive highway lighting using sensor-driven controls.",
       "github": "",
@@ -154,20 +184,9 @@
       "video": ""
     },
     {
-      "title": "Under Vehicle Surveillance System",
-      "category": "College",
-      "techStack": ["Computer Vision", "Image Processing"],
-      "description": "UVSS with automated underbody capture, report, and poster for surveillance use cases.",
-      "github": "",
-      "liveDemo": "",
-      "reportPdf": "assets/reports/UVSS_IEEE_report.pdf",
-      "posterPdf": "assets/reports/UVSS_poster_final.pdf",
-      "fullReportPdf": "assets/reports/UVSS_Full_Theory_Report.pdf",
-      "video": ""
-    },
-    {
       "title": "World of Engineering — Smart Glove",
       "category": "College",
+      "projectGroup": "learning",
       "techStack": ["Hardware", "Sensors", "Computer Vision"],
       "description": "Force-feedback motion tracking glove demoed as World of Engineering project.",
       "github": "",

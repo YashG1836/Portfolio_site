@@ -10,6 +10,24 @@ const state = {
   filter: "all",
 };
 
+const groupOrder = {
+  main: 0,
+  course: 1,
+  learning: 2,
+};
+
+const groupLabels = {
+  main: "Main Projects",
+  course: "Course Projects",
+  learning: "Learning Projects",
+};
+
+const groupCardLabels = {
+  main: "Main Project",
+  course: "Course Project",
+  learning: "Learning Project",
+};
+
 const getPreferredTheme = () => {
   const stored = localStorage.getItem("yg-theme");
   if (stored) return stored;
@@ -90,9 +108,39 @@ const renderProjects = () => {
     return project.category === state.filter;
   });
 
-  filtered.forEach((project) => {
+  const sorted = filtered
+    .map((project, index) => ({ ...project, _sortIndex: index }))
+    .sort((left, right) => {
+      const leftOrder = groupOrder[left.projectGroup || "learning"] ?? groupOrder.learning;
+      const rightOrder = groupOrder[right.projectGroup || "learning"] ?? groupOrder.learning;
+      if (leftOrder !== rightOrder) return leftOrder - rightOrder;
+      return left._sortIndex - right._sortIndex;
+    });
+
+  let currentGroup = null;
+
+  sorted.forEach((project) => {
+    const projectGroup = project.projectGroup || "learning";
+    if (projectGroup !== currentGroup) {
+      currentGroup = projectGroup;
+
+      const sectionHeader = document.createElement("div");
+      sectionHeader.className = "project-section";
+
+      const sectionTitle = document.createElement("p");
+      sectionTitle.className = "project-section__title";
+      sectionTitle.textContent = groupLabels[projectGroup] || groupLabels.learning;
+
+      sectionHeader.appendChild(sectionTitle);
+      projectsGrid.appendChild(sectionHeader);
+    }
+
     const card = document.createElement("article");
     card.className = "card";
+
+    const kicker = document.createElement("p");
+    kicker.className = "card__kicker";
+    kicker.textContent = `${groupCardLabels[projectGroup] || groupCardLabels.learning}${project.timeline ? ` · ${project.timeline}` : ""}`;
 
     const title = document.createElement("h3");
     title.className = "card__title";
@@ -102,19 +150,9 @@ const renderProjects = () => {
     desc.className = "card__desc";
     desc.textContent = project.description;
 
-    const meta = document.createElement("div");
-    meta.className = "card__meta";
-    const categoryChip = document.createElement("span");
-    categoryChip.className = "meta-chip";
-    categoryChip.textContent = project.category;
-    meta.appendChild(categoryChip);
-
-    (project.techStack || []).forEach((tech) => {
-      const chip = document.createElement("span");
-      chip.className = "meta-chip";
-      chip.textContent = tech;
-      meta.appendChild(chip);
-    });
+    const meta = document.createElement("p");
+    meta.className = "card__tags";
+    meta.textContent = [project.category, ...(project.techStack || [])].join(" · ");
 
     const links = document.createElement("div");
     links.className = "card__links";
@@ -126,6 +164,7 @@ const renderProjects = () => {
     if (project.video) links.appendChild(buildLinkPill("Video", project.video));
 
     card.appendChild(title);
+  card.appendChild(kicker);
     card.appendChild(desc);
     card.appendChild(meta);
     if (links.childElementCount) card.appendChild(links);

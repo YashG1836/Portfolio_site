@@ -383,6 +383,19 @@ main {
   margin-top: 16px;
 }
 
+.project-section {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+}
+
+.project-section__title {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .card {
   border: 1px solid var(--stroke);
   border-radius: 14px;
@@ -392,6 +405,14 @@ main {
   flex-direction: column;
   gap: 10px;
   min-height: 200px;
+}
+
+.card__kicker {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .card__title {
@@ -406,18 +427,11 @@ main {
   flex: 1;
 }
 
-.card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.meta-chip {
-  padding: 6px 10px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--stroke);
-  font-size: 12px;
+.card__tags {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .card__links {
