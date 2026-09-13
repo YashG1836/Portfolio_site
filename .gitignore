@@ -43,6 +43,3 @@ __pycache__/
 # Database
 *.sqlite
 *.sqlite3
-
-# Git LFS pointer files (keep tracked if using LFS)
-.gitattributes

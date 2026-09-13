@@ -1,173 +1,144 @@
-const projectsGrid = document.getElementById("projects-grid");
-const filterButtons = document.querySelectorAll(".filter-btn");
-const themeToggle = document.getElementById("theme-toggle");
-const contactEmailLinks = document.querySelectorAll(".contact-chip[data-email]");
-const navToggle = document.getElementById("nav-toggle");
-const navLinks = document.querySelector(".nav-links");
+/* Site behaviour: theme toggle, mobile nav, scroll reveal, active section,
+   copy-to-clipboard. Deliberately small — no framework, no dependencies. */
 
-const state = {
-  projects: [],
-  filter: "all",
-};
+(function () {
+  "use strict";
 
-const groupOrder = {
-  main: 0,
-  course: 1,
-  learning: 2,
-};
+  var root = document.documentElement;
 
-const groupLabels = {
-  main: "Main",
-  course: "Course",
-  learning: "Learning",
-};
+  /* --- theme ------------------------------------------------------------ */
 
-const getPreferredTheme = () => {
-  const stored = localStorage.getItem("yg-theme");
-  if (stored) return stored;
-  return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-};
-
-const applyTheme = (theme) => {
-  if (theme === "light") {
-    document.body.classList.add("light");
-    themeToggle.textContent = "☀️";
-  } else {
-    document.body.classList.remove("light");
-    themeToggle.textContent = "🌙";
-  }
-  localStorage.setItem("yg-theme", theme);
-};
-
-themeToggle.addEventListener("click", () => {
-  const nextTheme = document.body.classList.contains("light") ? "dark" : "light";
-  applyTheme(nextTheme);
-});
-
-applyTheme(getPreferredTheme());
-
-const closeNav = () => {
-  if (!navLinks) return;
-  navLinks.classList.remove("open");
-  navToggle?.classList.remove("is-open");
-  navToggle?.setAttribute("aria-expanded", "false");
-};
-
-navToggle?.addEventListener("click", () => {
-  if (!navLinks) return;
-  const isOpen = navLinks.classList.toggle("open");
-  navToggle.classList.toggle("is-open", isOpen);
-  navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-});
-
-navLinks?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", closeNav);
-});
-
-window.addEventListener(
-  "scroll",
-  () => {
-    if (navLinks?.classList.contains("open")) closeNav();
-  },
-  { passive: true }
-);
-
-// Copy email to clipboard, then open compose link
-contactEmailLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    const email = link.dataset.email;
-    if (!email) return;
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(email).catch(() => {});
-    }
-    // allow default navigation to Gmail compose (href)
-  });
-});
-
-const buildLinkPill = (label, href) => {
-  const a = document.createElement("a");
-  a.className = "link-pill";
-  a.href = href;
-  a.target = "_blank";
-  a.rel = "noreferrer";
-  a.textContent = label;
-  return a;
-};
-
-const renderProjects = () => {
-  if (!projectsGrid) return;
-  projectsGrid.innerHTML = "";
-  const filtered = state.projects.filter((project) => {
-    if (state.filter === "all") return true;
-    return (project.projectGroup || "learning") === state.filter;
-  });
-
-  const sorted = filtered
-    .map((project, index) => ({ ...project, _sortIndex: index }))
-    .sort((left, right) => {
-      const leftOrder = groupOrder[left.projectGroup || "learning"] ?? groupOrder.learning;
-      const rightOrder = groupOrder[right.projectGroup || "learning"] ?? groupOrder.learning;
-      if (leftOrder !== rightOrder) return leftOrder - rightOrder;
-      return left._sortIndex - right._sortIndex;
+  var toggle = document.querySelector("[data-theme-toggle]");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      try { localStorage.setItem("yg-theme", next); } catch (e) {}
+      toggle.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
     });
+  }
 
-  sorted.forEach((project) => {
-    const card = document.createElement("article");
-    card.className = "card";
+  /* --- mobile nav ------------------------------------------------------- */
 
-    const title = document.createElement("h3");
-    title.className = "card__title";
-    title.textContent = project.title;
+  var navToggle = document.querySelector("[data-nav-toggle]");
+  var nav = document.querySelector("[data-nav]");
+  if (navToggle && nav) {
+    var setNav = function (open) {
+      nav.classList.toggle("is-open", open);
+      navToggle.setAttribute("aria-expanded", String(open));
+    };
+    navToggle.addEventListener("click", function () {
+      setNav(!nav.classList.contains("is-open"));
+    });
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) setNav(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") setNav(false);
+    });
+  }
 
-    const desc = document.createElement("p");
-    desc.className = "card__desc";
-    desc.textContent = project.description;
+  /* --- sticky header hairline ------------------------------------------- */
 
-    const meta = document.createElement("p");
-    meta.className = "card__tags";
-    meta.textContent = [project.category, ...(project.techStack || [])].join(" · ");
+  var head = document.querySelector(".site-head");
+  if (head) {
+    var onScroll = function () { head.classList.toggle("is-stuck", window.scrollY > 8); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
 
-    const links = document.createElement("div");
-    links.className = "card__links";
-    if (project.liveDemo) links.appendChild(buildLinkPill("Live", project.liveDemo));
-    if (project.github) links.appendChild(buildLinkPill("Code", project.github));
-    if (project.reportPdf) links.appendChild(buildLinkPill("Report", project.reportPdf));
-    if (project.posterPdf) links.appendChild(buildLinkPill("Poster", project.posterPdf));
-    if (project.fullReportPdf) links.appendChild(buildLinkPill("Full Report", project.fullReportPdf));
-    if (project.video) links.appendChild(buildLinkPill("Video", project.video));
+  /* --- scroll reveal ----------------------------------------------------- */
 
-    card.appendChild(title);
-    const projectGroup = project.projectGroup || "learning";
+  var targets = document.querySelectorAll("[data-reveal]");
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    targets.forEach(function (el) { el.classList.add("is-in"); });
+  } else {
+    var reveal = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-in");
+        reveal.unobserve(entry.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+    targets.forEach(function (el) { reveal.observe(el); });
+  }
 
-    const kicker = document.createElement("p");
-    kicker.className = "card__kicker";
-    kicker.textContent = `${groupLabels[projectGroup] || groupLabels.learning}${project.timeline ? ` · ${project.timeline}` : ""}`;
-    card.appendChild(kicker);
+  /* --- active nav section ------------------------------------------------ */
 
-    card.appendChild(desc);
-    card.appendChild(meta);
-    if (links.childElementCount) card.appendChild(links);
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav] a[href*='#']"));
+  var sections = navLinks
+    .map(function (link) {
+      var id = link.getAttribute("href").split("#")[1];
+      var el = id && document.getElementById(id);
+      return el ? { link: link, el: el } : null;
+    })
+    .filter(Boolean);
 
-    projectsGrid.appendChild(card);
+  if (sections.length) {
+    sections.sort(function (a, b) { return a.el.offsetTop - b.el.offsetTop; });
+
+    /* Active = the last section whose top has passed just under the header.
+       Comparing against one line avoids the off-by-one that happens when two
+       adjacent sections both overlap a band. */
+    var ticking = false;
+    var syncNav = function () {
+      ticking = false;
+      var line = 96;
+      var current = null;
+      sections.forEach(function (s) {
+        if (s.el.getBoundingClientRect().top <= line) current = s;
+      });
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        current = sections[sections.length - 1];
+      }
+      sections.forEach(function (s) { s.link.classList.toggle("is-active", s === current); });
+    };
+
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(syncNav);
+    }, { passive: true });
+    window.addEventListener("resize", syncNav, { passive: true });
+    syncNav();
+  }
+
+  /* --- copy to clipboard ------------------------------------------------- */
+
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    var original = btn.textContent;
+    btn.addEventListener("click", function () {
+      var text = btn.getAttribute("data-copy");
+      var done = function () {
+        btn.textContent = "Copied";
+        btn.classList.add("is-done");
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove("is-done");
+        }, 1600);
+      };
+      var fallback = function () {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else {
+        fallback();
+      }
+    });
   });
-};
 
+  /* --- current year ------------------------------------------------------ */
 
-filterButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach((b) => b.classList.remove("active"));
-    btn.classList.add("active");
-    state.filter = btn.dataset.filter;
-    renderProjects();
+  document.querySelectorAll("[data-year]").forEach(function (el) {
+    el.textContent = new Date().getFullYear();
   });
-});
-
-fetch("assets/data/projects.json?v=20260603-6")
-  .then((res) => res.json())
-  .then((data) => {
-    state.projects = data.projects || [];
-    renderProjects();
-  })
-  .catch(() => {
-    projectsGrid.innerHTML = "<p class='card__desc'>Unable to load projects right now. Please retry after a refresh.</p>";
-  });
+})();

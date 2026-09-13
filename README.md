@@ -1,87 +1,159 @@
-# Yash Goyal Portfolio
+# yashgoyal29.in
 
-Production-ready static portfolio for Yash Goyal (B.Tech CSE, IIT Gandhinagar). Built to host all projects with a single source of truth via `projects.json`. Optimized for GitHub Pages, responsive layouts, and dark mode.
+Personal portfolio for Yash Goyal. Plain HTML, CSS and vanilla JavaScript — no framework,
+no build step, no dependencies. What is in the repo is exactly what gets served.
 
-## Folder structure
 ```
-portfolio-site/
-├── index.html              # Main entry
-├── assets/
-│   ├── css/style.css       # Styling & theme
-│   ├── js/main.js          # Data loading, filters, theming
-│   ├── data/projects.json  # Project metadata (single source of truth)
-│   ├── resume/Yash_Goyal_Resume.pdf
-│   └── reports/ieee-sample.pdf
+.
+├── index.html              home page  (hero, about, experience, work, skills, education, achievements, contact)
+├── projects/index.html     the full project archive
+├── 404.html
+├── CNAME                   custom domain for GitHub Pages
+├── favicon.svg
+├── robots.txt · sitemap.xml
+└── assets/
+    ├── css/style.css       the entire stylesheet
+    ├── js/main.js          theme, nav, scroll reveal, copy-to-clipboard
+    ├── js/projects.js      renders projects — you should never need to edit this
+    ├── data/projects.js    >>> ALL PROJECT CONTENT LIVES HERE <<<
+    ├── img/                profile photo (webp + jpg), social card, app icon
+    ├── resume/             the PDF résumé
+    ├── reports/            project reports and posters
+    ├── sites/              the old HTML/CSS/JS demos, served directly
+    └── videos/
 ```
 
-## Running locally
-Fetching JSON requires serving files over HTTP.
-1) Open a terminal in `portfolio-site`.
-2) Run any simple server, e.g.:
-   - Python: `python -m http.server 8000`
-   - Node: `npx serve .`
-3) Visit `http://localhost:8000`.
+---
 
-## Adding or updating projects
-All project metadata lives in `assets/data/projects.json`.
-Each entry supports:
-```json
+## Adding a project
+
+Open **`assets/data/projects.js`**. It is one array. Copy any existing block, paste it where
+you want it to appear, and change the fields. Nothing else in the repo needs to change — both
+the home page and the projects page read from this file.
+
+```js
 {
-  "title": "Project Name",
-  "category": "ML | Web | Full Stack | College",
-  "techStack": ["HTML", "CSS", "JavaScript"],
-  "description": "Short, action-focused summary.",
-  "github": "https://github.com/...",            // optional
-  "liveDemo": "https://..." or "../path/to/page.html", // optional
-  "reportPdf": "assets/reports/your-report.pdf", // optional
-  "video": "https://youtu.be/..."                // optional
+  tier: "featured",                       // see the table below
+  kind: "Research",                       // small grey label above the title
+  title: "Under Vehicle Surveillance System",
+  context: "CVIG Lab · Advisor: Prof. ...",   // optional — lab, course, advisor
+  timeline: "Aug – Nov 2025",             // shown to visitors; keep the format consistent
+  summary: "One or two sentences: what it is and why it exists.",
+  highlights: [                           // featured tier only; 2–3 bullets
+    "What you built and the technique behind it.",
+    "The result, with the number if you have one."
+  ],
+  metric: { value: "95.7%", label: "Recall@10 on MS MARCO" },   // optional
+  tech: ["Python", "PyTorch"],
+  links: [
+    { label: "Live demo", href: "https://..." },
+    { label: "Code",      href: "https://github.com/..." },
+    { label: "Report",    href: "/assets/reports/your-report.pdf" }
+  ]
 }
 ```
-Guidelines:
-- Omit fields you do not have; the UI hides missing links.
-- For local/demo HTML projects already in this repo, point `liveDemo` to the relative path (e.g., `../Amazon_Project/amz_html.html`).
-- Place PDFs in `assets/reports/` and update `reportPdf` accordingly.
-- Keep categories consistent with the filter buttons: `ML`, `Web`, `Full Stack`, `College`.
 
-## Resume
-Replace `assets/resume/Yash_Goyal_Resume.pdf` with the latest CV. The download button pulls from this path.
+### `tier` — the only field that decides where a project shows up
 
-## Deploying to GitHub Pages
-Option A: Deploy the `portfolio-site` folder as Pages root.
-1) Commit/push the repository.
-2) In GitHub → Settings → Pages, pick the branch (e.g., `main`) and set the source folder to `/portfolio-site`.
-3) Save; Pages will serve `index.html` with assets.
+| `tier`       | Where it appears                                              | Layout |
+|--------------|---------------------------------------------------------------|--------|
+| `"featured"` | Home page **and** top of `/projects/`                          | Large row with highlights and metric |
+| `"course"`   | `/projects/` → "Course & team projects"                        | Compact card |
+| `"applied"`  | `/projects/` → "Applied ML & side builds"                      | Compact card |
+| `"early"`    | `/projects/` → "Early work", collapsed by default              | One line |
 
-Option B: Move contents to repo root
-1) Move files from `portfolio-site/` to the repository root.
-2) Set Pages source to the root of the branch.
+Keep `featured` to about five projects. That section is the one people actually read, and it
+stops working the moment it turns into a list.
 
-## Project links & reports
-- Hardware/report projects (Smart Highway Lighting, UVSS) link to PDFs already present at repo root (e.g., `../Elec_Project_YAssssssssssh.pdf`). Keep the repo structure intact so links remain valid.
-- World of Engineering smart glove demo links its video from `../WOE_FINAL.mp4`.
-- Web projects link to their existing HTML files in sibling folders.
-- Streamlit apps: run locally, then use the matching ports — RAG `streamlit run Project_RAG_AI/streamlit_app.py` → `http://localhost:8501`, Spam `http://localhost:8502`, Movie Recs `http://localhost:8503`, Housing Price (California) `streamlit run Project_gurgaon/streamlit_app.py --server.port 8504` → `http://localhost:8504`.
+### The rest of the fields
 
-## SEO & accessibility
-- Semantic sections with proper landmarks (header, main, footer).
-- Metadata description set in `index.html`.
-- Filter buttons are keyboard-focusable.
+- **`highlights`** are only rendered for `featured`. Other tiers show `summary` alone.
+- **`metric`** renders a boxed headline number. Leave it out when there isn't a real one —
+  an empty-sounding metric is worse than none.
+- **`links`** is a plain list, so add as many as the project has. The first one is emphasised
+  and the title links to it, so put the best link first (usually a live demo). A `.pdf` href
+  automatically gets a document icon; everything else gets an external-link arrow.
+- **`timeline`** may be omitted, but every project reads better with a date. Prefer
+  `"Jan – Apr 2026"`, or just `"2025"` when the month isn't worth pinning down.
+- Any field you leave out simply isn't rendered — nothing breaks and nothing shows empty.
 
-## Dark mode
-- System preference respected on first load.
-- Manual toggle stored in `localStorage` (`yg-theme`).
+Each project automatically gets an anchor made from its title, so you can link straight to one:
+`/projects/#semantic-search-engine`.
 
-## Troubleshooting
-- If projects do not load locally, ensure you are running a local server (CORS prevents `file://` fetch).
-- Broken links are avoided by hiding unset fields; verify external URLs manually after editing.
+---
 
+## Updating everything else
 
-Student os: 5173
+| What | Where |
+|---|---|
+| About text, "Currently" card | `index.html` → `<section id="about">` |
+| Experience and campus roles | `index.html` → `<section id="experience">` |
+| Skills groups and their "used in" lines | `index.html` → `<section id="skills">` |
+| Education and coursework | `index.html` → `<section id="education">` |
+| Achievements | `index.html` → `<section id="achievements">` |
+| Contact links and closing note | `index.html` → `<section id="contact">` |
+| Résumé PDF | replace `assets/resume/Yash_Goyal_Resume.pdf`, keeping the filename |
+| Profile photo | see below |
+| Colours, type, spacing | the token block at the top of `assets/css/style.css` |
 
+These sections are written directly in HTML rather than generated from data: they change once
+or twice a year, and keeping them in the markup means they load with the page and are visible
+to search engines.
 
+### Replacing the profile photo
 
-cd "C:\Users\YASH GOYAL\Desktop\Portfolio_Yash\projects\Student_Os - Copy - Copy\shadcn-ui" && pnpm run dev 
+Crop the source once, then export the three sizes the page expects:
 
-cd "C:\Users\YASH GOYAL\Desktop\Portfolio_Yash\projects\portfolio-site" && python -m http.server 5500
+```bash
+CROP="820x1025+400+320"       # width x height + xOffset + yOffset, 4:5 ratio
+SRC=assets/Profile_photo/pfp2.jpeg
+magick "$SRC" -crop $CROP +repage -resize 400x500  -strip -quality 80 assets/img/yash-400.webp
+magick "$SRC" -crop $CROP +repage -resize 800x1000 -strip -quality 80 assets/img/yash-800.webp
+magick "$SRC" -crop $CROP +repage -resize 800x1000 -strip -interlace Plane -quality 82 assets/img/yash-800.jpg
+```
 
-Website: yashgoyal29.in
+Keep the 4:5 ratio and the filenames — both are referenced from the stylesheet.
+
+On desktop the photo sits in `.hero__frame`, where the lower half softens and dissolves
+into the page. That is two layers in `assets/css/style.css`: `.hero__veil`, a blurred copy of
+`yash-800.webp` masked so it only takes over toward the bottom, and `.hero__frame::after`,
+a gradient to the page colour. Both live inside the desktop media query, so the mobile
+avatar stays sharp and never downloads the second image. To show more or less of yourself,
+move the mask and gradient percentages; to change how soft it gets, change `blur(12px)`.
+
+The circular mobile version is positioned with `object-position` in `.hero__photo img`
+— adjust the vertical percentage if the face sits off-centre.
+
+---
+
+## Running it locally
+
+The pages use root-relative paths (`/assets/...`), so they need a server rather than opening
+`index.html` from disk:
+
+```bash
+python3 -m http.server 5500
+# then open http://localhost:5500
+```
+
+There is no build, no install and no `node_modules`. What you see locally is what deploys.
+
+## Deploying
+
+GitHub Pages serves this repository's `main` branch from the root, with `CNAME` pointing at
+`yashgoyal29.in`. Pushing to `main` deploys.
+
+Because paths are root-relative, the site must be served from a domain root — which the custom
+domain gives it. If you ever drop the custom domain, the `yashg1836.github.io/Portfolio_site/`
+URL would need those paths made relative.
+
+## Notes
+
+- Theme follows the system setting on first visit and remembers a manual choice in
+  `localStorage` under `yg-theme`. An inline script in `<head>` applies it before first paint,
+  so there is no flash of the wrong theme.
+- Animations are limited to short fades and hover states, and are disabled entirely for
+  visitors who set `prefers-reduced-motion`.
+- `assets/videos/WOE_FINAL.mp4` is 77 MB and is committed directly to git. It is only fetched
+  when someone clicks the demo link, but if the repo ever needs slimming, moving that file to
+  YouTube or Drive and linking out is the single biggest win available.
